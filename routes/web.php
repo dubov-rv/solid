@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Backend\TaskController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +22,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('/tasks', TaskController::class)->only('index', 'store', 'update', 'destroy')->names('backend.tasks');
+Route::get('/tasks/export/csv', [TaskController::class, 'exportCSV'])->name('backend.tasks.export.csv');
