@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\TaskController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,3 +26,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('/tasks', TaskController::class)->only('index', 'store', 'update', 'destroy')->names('backend.tasks');
 Route::get('/tasks/export/csv', [TaskController::class, 'exportCSV'])->name('backend.tasks.export.csv');
+
+Route::resource('/products', ProductController::class)->only('index', 'store', 'update', 'destroy')->names('backend.products');
