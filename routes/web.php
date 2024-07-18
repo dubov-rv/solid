@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\MessageController;
 use App\Http\Controllers\Backend\NotificationController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ShapeController;
@@ -63,5 +64,7 @@ Route::get('/perimeter/circle/{radius}', function ($radius) {
     $circle = new Circle($radius);
     return (new ShapeController())->getPerimeter($circle);
 });
+
+Route::resource('/messages', MessageController::class)->only('index', 'store', 'update', 'destroy')->names('backend.messages');
 
 Route::get('/send-notification', [NotificationController::class, 'sendNotification']);

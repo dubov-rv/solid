@@ -27,8 +27,8 @@ class ProductUpdateRequest extends FormRequest
             'description' => 'required|min:2',
             'price' => 'required|numeric|min:0',
             'product_type' => 'required|in:' . Product::TYPE_PHYSICAL . ',' . Product::TYPE_DIGITAL,
-            'weight' => 'required_if:type,' . Product::TYPE_PHYSICAL . '|numeric|min:0',
-            'link' => 'required_if:type,' . Product::TYPE_DIGITAL . '|string',
+            'weight' => 'required_if:product_type,' . Product::TYPE_PHYSICAL . '|numeric|min:0',
+            'link' => 'required_if:product_type,' . Product::TYPE_DIGITAL . '|string',
         ];
     }
 
